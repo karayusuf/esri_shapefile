@@ -16,8 +16,6 @@ module EsriShapefile
     field :unused,      position: 16, type: :integer, byte_order: :big
     field :unused,      position: 20, type: :integer, byte_order: :big
 
-    # The value for file length is the total length of the file in 16-bit words
-    # (including the fifty 16-bit words that make up the header).
     field :file_length, position: 24, type: :integer, byte_order: :big
     field :version,     position: 28, type: :integer, byte_order: :little
     field :shape_type,  position: 32, type: :integer, byte_order: :little
@@ -32,13 +30,14 @@ module EsriShapefile
     field :m_min,       position: 84, type: :double,  byte_order: :little
     field :m_max,       position: 92, type: :double,  byte_order: :little
 
-    # def self.from_bytes(bytes)
-    #   values = bytes.unpack('N7V2E8')
+    # The value for file length is the total length of the file in 16-bit words
+    # (including the fifty 16-bit words that make up the header). This means
+    # that we need to multiply the value by 2 in order to know the size of the
+    # file in bytes
+    def file_length_bytes
+      file_length * 2
+    end
 
-    #   main_file_header = self.new
-    #   main_file_header.file_code = values[0]
-    #   main_file_header
-    # end
   end
 end
 
