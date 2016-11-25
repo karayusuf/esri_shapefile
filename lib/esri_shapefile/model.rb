@@ -4,7 +4,7 @@ module EsriShapefile
   module Model
 
     def field(name, position:, type:, byte_order:)
-      attr_accessor name
+      attr_accessor name unless name == :unused
       fields << Field.new(name, position: position, type: type, byte_order: byte_order)
     end
 
@@ -13,25 +13,19 @@ module EsriShapefile
     end
 
     def from_bytes(bytes)
-      model = self.new
+      field_values = {}
+      fields.reduce(0) do |offset, field|
+        if !field.unused?
+          field_values[field.name] = bytes.unpack("@#{offset}#{field.unpack_format}").first
+        end
 
-      unpack_string = UnpackString.for_fields(fields)
-      values = bytes.unpack(unpack_string)
-      values.each_with_index do |value, index|
-        model.send("#{fields[index].name}=", value)
+        offset += field.bytesize
+        (offset < bytes.size) ? offset : break
       end
 
-      model
-    end
-
-    class Field
-      attr_reader :name, :position, :type, :byte_order
-
-      def initialize(name, position:, type:, byte_order:)
-        @name = name
-        @position = position
-        @type = type
-        @byte_order = byte_order
+      field_values.reduce(self.new) do |model, (field, value)|
+        model.send("#{field}=", value)
+        model
       end
     end
 
