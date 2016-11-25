@@ -1,11 +1,11 @@
 require 'pry'
 
 module EsriShapefile
-  module Model
+  module ByteModel
 
-    def field(name, position:, type:, byte_order:)
+    def field(name, number: nil, position:, type:, byte_order:)
       attr_accessor name unless name == :unused
-      fields << Field.new(name, position: position, type: type, byte_order: byte_order)
+      fields << Field.new(name, position: position, type: type, byte_order: byte_order, number: number)
     end
 
     def fields
@@ -16,7 +16,9 @@ module EsriShapefile
       field_values = {}
       fields.reduce(0) do |offset, field|
         if !field.unused?
-          field_values[field.name] = bytes.unpack("@#{offset}#{field.unpack_format}").first
+          unpack_format = field.unpack_format(field_values)
+          field_value = bytes.unpack("@#{offset}#{unpack_format}")
+          field_values[field.name] = field.list? ? field_value : field_value.first
         end
 
         offset += field.bytesize

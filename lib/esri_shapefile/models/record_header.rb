@@ -1,4 +1,4 @@
-require 'esri_shapefile/model'
+require 'esri_shapefile/byte_model'
 
 module EsriShapefile
   #
@@ -9,7 +9,7 @@ module EsriShapefile
   # record.
   #
   class RecordHeader
-    extend EsriShapefile::Model
+    extend EsriShapefile::ByteModel
 
     # Record numbers begin at 1.
     field :record_number,  position: 0, type: :integer, byte_order: :big

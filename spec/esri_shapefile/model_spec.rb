@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-describe EsriShapefile::Model do
+describe EsriShapefile::ByteModel do
 
   describe "declaring fields" do
     let(:example_model) do
       Class.new do
-        extend EsriShapefile::Model
+        extend EsriShapefile::ByteModel
         field :foo, position: 0, type: :integer, byte_order: :little
       end
     end

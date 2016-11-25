@@ -1,6 +1,6 @@
 require "esri_shapefile/version"
-require "esri_shapefile/model"
-require "esri_shapefile/field"
+require "esri_shapefile/byte_model"
+require "esri_shapefile/byte_model/field"
 
 require "esri_shapefile/models/main_file_header"
 require "esri_shapefile/models/record_header"
