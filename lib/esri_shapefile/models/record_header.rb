@@ -19,6 +19,10 @@ module EsriShapefile
     # content_length) 16-bit words toward the total length of the file, as
     # stored as Byte 24 in the file header.
     field :content_length, position: 4, type: :integer, byte_order: :big
+
+    def content_length_bytes
+      content_length * 2
+    end
   end
 end
 

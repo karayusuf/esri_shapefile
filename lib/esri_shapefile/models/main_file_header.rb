@@ -30,12 +30,24 @@ module EsriShapefile
     field :m_min,       position: 84, type: :double,  byte_order: :little
     field :m_max,       position: 92, type: :double,  byte_order: :little
 
+    SHAPES = {
+      0 => Shapes::Null,
+      1 => Shapes::Point,
+      # 3 => Shapes::PolyLine
+      5 => Shapes::Polygon,
+      8 => Shapes::MultiPoint,
+    }
+
     # The value for file length is the total length of the file in 16-bit words
     # (including the fifty 16-bit words that make up the header). This means
     # that we need to multiply the value by 2 in order to know the size of the
     # file in bytes
     def file_length_bytes
       file_length * 2
+    end
+
+    def shape
+      SHAPES.fetch(shape_type)
     end
 
   end
