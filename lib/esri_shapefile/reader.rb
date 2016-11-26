@@ -9,6 +9,7 @@ module EsriShapefile
     def initialize(path_to_shapefile)
       @path_to_shapefile = path_to_shapefile
       @main_file_header = parse_main_file_header
+      @shape = @main_file_header.shape
     end
 
     def each_record
@@ -22,7 +23,7 @@ module EsriShapefile
           record_header = RecordHeader.from_bytes(record_header_bytes)
 
           shape_bytes = file.read(record_header.content_length_bytes)
-          shape = Shapes::Polygon.from_bytes(shape_bytes)
+          shape = @shape.from_bytes(shape_bytes)
 
           yield record_header, shape
 

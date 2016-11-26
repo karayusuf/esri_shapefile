@@ -18,6 +18,16 @@ module EsriShapefile
         if !field.unused?
           unpack_format = field.unpack_format(field_values)
           field_value = bytes.unpack("@#{offset}#{unpack_format}")
+
+          if field.type == :point
+            field_value = field_value.each_slice(2).map do |x, y|
+              point = Shapes::Point.new
+              point.x = x
+              point.y = y
+              point
+            end
+          end
+
           field_values[field.name] = field.list? ? field_value : field_value.first
         end
 
