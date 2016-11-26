@@ -43,6 +43,7 @@ module EsriShapefile
       15 => Shapes::PolygonZ,
       18 => Shapes::MultiPointZ,
       21 => Shapes::PointM,
+      28 => Shapes::MultiPointM,
     }
 
     # The value for file length is the total length of the file in 16-bit words
