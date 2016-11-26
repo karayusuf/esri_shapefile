@@ -43,6 +43,7 @@ module EsriShapefile
       15 => Shapes::PolygonZ,
       18 => Shapes::MultiPointZ,
       21 => Shapes::PointM,
+      23 => Shapes::PolyLineM,
       28 => Shapes::MultiPointM,
     }
 
