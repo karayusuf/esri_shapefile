@@ -1,8 +1,6 @@
 # EsriShapefile
 
-Ruby library to read an ESRI Shapefile.
-
-Specification: https://www.esri.com/library/whitepapers/pdfs/shapefile.pdf.
+Ruby library to read an [ESRI Shapefile](https://www.esri.com/library/whitepapers/pdfs/shapefile.pdf)
 
 ## Installation
 
