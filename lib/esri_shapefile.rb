@@ -9,6 +9,7 @@ require "esri_shapefile/models/shapes/multi_point"
 require "esri_shapefile/models/shapes/poly_line"
 require "esri_shapefile/models/shapes/poly_line_z"
 require "esri_shapefile/models/shapes/polygon"
+require "esri_shapefile/models/shapes/polygon_z"
 
 require "esri_shapefile/models/main_file_header"
 require "esri_shapefile/models/record_header"
