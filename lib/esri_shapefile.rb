@@ -8,7 +8,9 @@ require "esri_shapefile/models/record_header"
 require "esri_shapefile/models/shapes/null"
 require "esri_shapefile/models/shapes/point"
 require "esri_shapefile/models/shapes/multi_point"
+require "esri_shapefile/models/shapes/polygon"
 
 module EsriShapefile
   # Your code goes here...
 end
+
