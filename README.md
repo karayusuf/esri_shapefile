@@ -28,7 +28,9 @@ reader = EsriShapefile::Reader.new("/path/to/shapefile")
 reader.main_file_header # => Instance of EsriShapefile::MainFileHeader
 ```
 
-Read all of the records in a shapefile
+Read all of the records in a shapefile.
+
+Supported shapes can be found [here](lib/esri_shapefile/models/shapes)
 
 ```ruby
 require 'esri_shapefile'
