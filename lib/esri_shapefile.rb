@@ -4,6 +4,7 @@ require "esri_shapefile/byte_model/field"
 
 require "esri_shapefile/models/shapes/null"
 require "esri_shapefile/models/shapes/point"
+require "esri_shapefile/models/shapes/point_m"
 require "esri_shapefile/models/shapes/point_z"
 require "esri_shapefile/models/shapes/multi_point"
 require "esri_shapefile/models/shapes/multi_point_z"
