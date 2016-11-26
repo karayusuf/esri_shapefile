@@ -30,25 +30,6 @@ module EsriShapefile
     field :m_min,       position: 84, type: :double,  byte_order: :little
     field :m_max,       position: 92, type: :double,  byte_order: :little
 
-    # Shape types not specified below (2, 4, 6, etc., and up to 33) are
-    # reserved for future use
-    SHAPES = {
-      0  => Shapes::Null,
-      1  => Shapes::Point,
-      3  => Shapes::PolyLine,
-      5  => Shapes::Polygon,
-      8  => Shapes::MultiPoint,
-      11 => Shapes::PointZ,
-      13 => Shapes::PolyLineZ,
-      15 => Shapes::PolygonZ,
-      18 => Shapes::MultiPointZ,
-      21 => Shapes::PointM,
-      23 => Shapes::PolyLineM,
-      25 => Shapes::PolygonM,
-      28 => Shapes::MultiPointM,
-      31 => Shapes::MultiPatch,
-    }
-
     # The value for file length is the total length of the file in 16-bit words
     # (including the fifty 16-bit words that make up the header). This means
     # that we need to multiply the value by 2 in order to know the size of the
@@ -58,7 +39,7 @@ module EsriShapefile
     end
 
     def shape
-      SHAPES.fetch(shape_type)
+      Shapes.from_type(shape_type)
     end
 
   end
