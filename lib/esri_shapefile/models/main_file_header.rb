@@ -30,12 +30,15 @@ module EsriShapefile
     field :m_min,       position: 84, type: :double,  byte_order: :little
     field :m_max,       position: 92, type: :double,  byte_order: :little
 
+    # Shape types not specified below (2, 4, 6, etc., and up to 33) are
+    # reserved for future use
     SHAPES = {
-      0 => Shapes::Null,
-      1 => Shapes::Point,
-      # 3 => Shapes::PolyLine
-      5 => Shapes::Polygon,
-      8 => Shapes::MultiPoint,
+      0  => Shapes::Null,
+      1  => Shapes::Point,
+      3  => Shapes::PolyLine,
+      5  => Shapes::Polygon,
+      8  => Shapes::MultiPoint,
+      11 => Shapes::PointZ,
     }
 
     # The value for file length is the total length of the file in 16-bit words
