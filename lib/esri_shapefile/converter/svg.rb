@@ -14,7 +14,8 @@ module EsriShapefile
           output_file.write(open_svg_header(reader.main_file_header))
 
           reader.each_record do |record_header, shape|
-            output_file.write(convert_shape_to_svg(shape))
+            shape_converter = get_shape_converter(shape)
+            output_file.write(shape_converter.to_svg(shape))
           end
 
           output_file.write(close_svg_header)
@@ -23,19 +24,11 @@ module EsriShapefile
 
       private
 
-      def convert_shape_to_svg(shape)
-        svg = '<g>'
-
-        shape.rings.each do |ring|
-          svg << '<polygon points="'
-          ring.points.each do |ring|
-            svg << "#{ring.x},#{-ring.y} "
-          end
-          svg << '" />'
+      def get_shape_converter(shape)
+        case
+        when Shapes::Polygon then Svg::Polygon
+        else raise "Shape not supported"
         end
-
-        svg << "</g>"
-        svg
       end
 
       def open_svg_header(main_file_header)

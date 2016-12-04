@@ -25,6 +25,7 @@ require "esri_shapefile/models/record_header"
 
 require "esri_shapefile/reader"
 require "esri_shapefile/converter/svg"
+require "esri_shapefile/converter/svg/polygon"
 
 module EsriShapefile
 end
