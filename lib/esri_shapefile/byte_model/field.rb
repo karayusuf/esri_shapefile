@@ -33,8 +33,16 @@ module EsriShapefile
         name == :unused
       end
 
-      def bytesize
-        TYPES[@type][:bytesize]
+      def bytesize(values = {})
+        size = TYPES[@type][:bytesize]
+
+        if number_depends_on_field?
+          multiplier = TYPES[@type][:unpack][:multiplier] || 1
+          number_of_consecutive_values = number_depends_on_field? ? values[number] : number
+          number_of_consecutive_values * multiplier * size
+        else
+          size
+        end
       end
 
       def unpack_format(values = {})

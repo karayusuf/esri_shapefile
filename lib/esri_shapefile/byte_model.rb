@@ -29,7 +29,7 @@ module EsriShapefile
           field_values[field.name] = field.list? ? field_value : field_value.first
         end
 
-        offset += field.bytesize
+        offset += field.bytesize(field_values)
         (offset < bytes.size) ? offset : break
       end
 

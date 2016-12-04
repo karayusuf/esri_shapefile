@@ -2,6 +2,8 @@ require "esri_shapefile/version"
 require "esri_shapefile/byte_model"
 require "esri_shapefile/byte_model/field"
 
+require "esri_shapefile/models/utils/ring"
+
 require "esri_shapefile/models/shapes/null"
 require "esri_shapefile/models/shapes/point"
 require "esri_shapefile/models/shapes/point_m"
