@@ -24,17 +24,6 @@ module EsriShapefile
         polygon
       end
 
-      describe "#to_svg" do
-        it "groups the rings as polygons" do
-          expected_svg  = '<g>'
-          expected_svg << '<polygon points="200,200 250,250 300,200 250,150 200,200" />'
-          expected_svg << '<polygon points="100,200 250,350 400,200 250,50 100,200" />'
-          expected_svg << '</g>'
-
-          expect(polygon.to_svg).to eql(expected_svg)
-        end
-      end
-
       describe "#rings" do
         it "foo" do
           expect(polygon.rings).to eql([

@@ -24,8 +24,8 @@ require "esri_shapefile/models/main_file_header"
 require "esri_shapefile/models/record_header"
 
 require "esri_shapefile/reader"
+require "esri_shapefile/converter/svg"
 
 module EsriShapefile
-  # Your code goes here...
 end
 

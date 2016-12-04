@@ -33,27 +33,13 @@ module EsriShapefile
       field :parts,      position: 44, type: :integer, byte_order: :little, number: :num_parts
       field :points,     position: :x, type: :point,   byte_order: :little, number: :num_points
 
-      def to_svg
-        svg = "<g>"
-
-        rings.each do |ring|
-          svg << '<polygon points="'
-          ring.points.each do |ring|
-            svg << "#{ring.x},#{-ring.y} "
-          end
-          svg << '" />'
-        end
-
-        svg << "</g>"
-      end
-
       def rings
         @rings ||= begin
-                     ring_parts = (parts + [points.size])
-                     ring_parts.each_cons(2).map do |ring_start_index, next_ring_index|
-                       Ring.new(points[ring_start_index...next_ring_index])
-                     end
-                   end
+          ring_parts = (parts + [points.size])
+          ring_parts.each_cons(2).map do |ring_start_index, next_ring_index|
+            Ring.new(points[ring_start_index...next_ring_index])
+          end
+        end
       end
     end
   end
