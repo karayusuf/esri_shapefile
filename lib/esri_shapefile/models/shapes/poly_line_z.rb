@@ -8,7 +8,7 @@ module EsriShapefile
     # Parts may or may not intersect one another.
     #
     class PolyLineZ
-      extend EsriShapefile::ByteModel
+      include EsriShapefile::ByteModel
 
       field :shape_type, position: 0,  type: :integer, byte_order: :little
       field :x_min,      position: 4,  type: :double,  byte_order: :little

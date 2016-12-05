@@ -5,7 +5,7 @@ describe EsriShapefile::ByteModel do
   describe "declaring fields" do
     let(:example_model) do
       Class.new do
-        extend EsriShapefile::ByteModel
+        include EsriShapefile::ByteModel
         field :foo, position: 0, type: :integer, byte_order: :little
       end
     end

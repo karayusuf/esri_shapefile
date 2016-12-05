@@ -7,7 +7,7 @@ module EsriShapefile
   # with respect to the start of the file.
   #
   class MainFileHeader
-    extend EsriShapefile::ByteModel
+    include EsriShapefile::ByteModel
 
     field :file_code,   position:  0, type: :integer, byte_order: :big
     field :unused,      position:  4, type: :integer, byte_order: :big

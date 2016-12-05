@@ -10,7 +10,7 @@ module EsriShapefile
     # populated with geometric data soon after they are created.
     #
     class Null
-      extend EsriShapefile::ByteModel
+      include EsriShapefile::ByteModel
 
       field :shape_type, position: 0, type: :integer, byte_order: :little
     end

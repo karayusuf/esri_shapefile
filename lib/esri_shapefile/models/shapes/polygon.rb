@@ -21,7 +21,7 @@ module EsriShapefile
     # The Polygon structure is identical to the PolyLine structure.
     #
     class Polygon
-      extend EsriShapefile::ByteModel
+      include EsriShapefile::ByteModel
 
       field :shape_type, position: 0, type: :integer, byte_order: :little
       field :x_min,      position: 4,  type: :double,  byte_order: :little

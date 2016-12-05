@@ -3,7 +3,11 @@ module EsriShapefile
     class Svg::Polygon
 
       def self.to_svg(polygon)
-        svg = '<g>'
+        svg = '<g'
+        polygon.metadata.each do |key, value|
+          svg << " #{key}=\"#{value}\""
+        end
+        svg << '>'
 
         polygon.rings.each do |ring|
           svg << '<polygon points="'
