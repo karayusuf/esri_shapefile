@@ -40,8 +40,8 @@ module EsriShapefile
         width  = main_file_header.x_max - main_file_header.x_min
 
         header << "<svg "
-        header << " height=#{height}"
-        header << " width=#{width}"
+        header << " height=\"100%\""
+        header << " width=\"100%\""
         header << " viewbox=\"#{main_file_header.x_min} #{-main_file_header.y_max} #{width} #{height}\" >"
         header
       end
